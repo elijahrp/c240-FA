@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Food Michelin Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg" type="image/svg+xml">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            /* Korean dancheong-inspired background pattern */
+            background-color: #f8f8f8;
+            background-image:
+                url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Dancheong_pattern_1.svg'),
+                repeating-linear-gradient(135deg, #f8f8f8, #f8f8f8 40px, #e6e6e6 40px, #e6e6e6 80px);
+            background-repeat: repeat, repeat;
+            background-size: 180px 120px, auto;
+            background-position: top left, top left;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(90deg, #0e4c92 0%, #e94f37 100%);
+            color: #fff;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+        .korean-flag {
+            width: 48px;
+            height: 32px;
+            position: absolute;
+            left: 2rem;
+            top: 2rem;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg') no-repeat center/cover;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .divider {
+            width: 80px;
+            height: 8px;
+            margin: 1rem auto 0.5rem auto;
+            background: repeating-linear-gradient(90deg, #0e4c92, #0e4c92 16px, #e94f37 16px, #e94f37 32px);
+            border-radius: 4px;
+        }
+        .chatbot-container {
+            max-width: 520px;
+            margin: 2rem auto;
+            background: #fffbe6;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(14,76,146,0.10);
+            border: 2px solid #0e4c92;
+            position: relative;
+            /* Remove all padding and overflow */
+        }
+        #bp-webchat {
+            min-height: 500px;
+            width: 100%;
+            background: transparent;
+            border: none;
+        }
+        .food-gallery {
+            max-width: 900px;
+            margin: 3rem auto 2rem auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 2rem 1rem 1.5rem 1rem;
+            text-align: center;
+        }
+        .food-gallery h2 {
+            font-size: 2rem;
+            color: #0e4c92;
+            margin-bottom: 1.5rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        .food-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fffbe6;
+            border-radius: 12px;
+            box-shadow: 0 1px 6px rgba(14,76,146,0.07);
+            padding: 1rem 0.5rem 0.5rem 0.5rem;
+        }
+        .food-item img {
+            width: 140px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            border: 2px solid #e94f37;
+        }
+        .food-item span {
+            font-size: 1.1rem;
+            color: #e94f37;
+            font-weight: 600;
+        }
+        .intro-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2.5rem auto 2rem auto;
+            background: #fffbe6;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(14,76,146,0.08);
+            padding: 2rem 2rem 2rem 2rem;
+        }
+        .intro-img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 16px;
+            border: 2.5px solid #0e4c92;
+            background: #fff;
+        }
+        .intro-text {
+            flex: 1;
+            min-width: 220px;
+        }
+        .intro-text h2 {
+            color: #e94f37;
+            margin-top: 0;
+            margin-bottom: 0.7rem;
+            font-size: 2rem;
+        }
+        .intro-text p {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .intro-list {
+            text-align: left;
+            color: #0e4c92;
+            font-size: 1rem;
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+        .intro-list li {
+            margin-bottom: 0.5rem;
+        }
+        .site-footer {
+            background: linear-gradient(90deg, #0e4c92 0%, #e94f37 100%);
+            color: #fff;
+            padding: 2.5rem 0 1rem 0;
+            margin-top: 3rem;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1100px;
+            margin: 0 auto 1.5rem auto;
+            gap: 2rem;
+        }
+        .footer-section {
+            flex: 1 1 220px;
+            min-width: 200px;
+        }
+        .footer-section h3 {
+            margin-top: 0;
+            color: #ffe082;
+            font-size: 1.2rem;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-section a {
+            color: #ffe082;
+            text-decoration: none;
+            transition: text-decoration 0.2s;
+        }
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+        .footer-social {
+            margin-right: 0.5rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            color: #ffe082;
+            font-size: 0.95rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .chatbot-container {
+                padding: 1rem 0.5rem 0.5rem 0.5rem;
+            }
+            .korean-flag {
+                left: 1rem;
+                top: 1rem;
+                width: 32px;
+                height: 22px;
+            }
+        }
+        @media (max-width: 800px) {
+            .intro-section {
+                flex-direction: column;
+                padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+                gap: 1.2rem;
+            }
+            .intro-img {
+                width: 120px;
+                height: 120px;
+            }
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="korean-flag"></div>
+        <h1>Korean Food Michelin Guide</h1>
+        <div class="divider"></div>
+        <p>Discover the best Korean restaurants, ask questions, and get recommendations!</p>
+    </header>
+    <main>
+        <section class="intro-section">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.O9dGYI0--eS6c7nzOepq2AHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Korean Palace Motif" class="intro-img" />
+            <div class="intro-text">
+                <h2>Welcome to the Korean Food Michelin Guide</h2>
+                <p>Explore the vibrant world of Korean cuisine! From sizzling barbecue to spicy stews and colorful side dishes, discover the best restaurants, ask our AI chatbot for recommendations, and learn about the culture behind every bite.</p>
+                <ul class="intro-list">
+                    <li><strong>Authentic Dishes:</strong> See photos and names of Korea's most beloved foods.</li>
+                    <li><strong>Ask Anything:</strong> Use the blue chatbot icon to get food tips, restaurant suggestions, or learn about Korean culinary traditions.</li>
+                    <li><strong>Michelin-Style Picks:</strong> Find out which dishes and places are must-tries!</li>
+                </ul>
+            </div>
+        </section>
+        <section class="food-gallery">
+            <h2>Famous Korean Dishes</h2>
+            <div class="gallery-grid">
+                <div class="food-item">
+                    <img src="https://www.beyondkimchee.com/wp-content/uploads/2022/04/Kimchi-Jjigae-thumbnail.jpg" alt="Kimchi Jjigae" />
+                    <span>Kimchi Jjigae</span>
+                </div>
+                <div class="food-item">
+                    <img src="https://www.recipetineats.com/tachyon/2019/05/Bibimbap_3.jpg" alt="Bibimbap" />
+                    <span>Bibimbap</span>
+                </div>
+                <div class="food-item">
+                    <img src="https://static01.nyt.com/images/2023/11/14/multimedia/JM-Bulgogi-qmfj/JM-Bulgogi-qmfj-mediumSquareAt3X.jpg" alt="Bulgogi" />
+                    <span>Bulgogi</span>
+                </div>
+                <div class="food-item">
+                    <img src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipes%2F2024-09-tteokbokki%2Ftteokbokki-523" alt="Tteokbokki" />
+                    <span>Tteokbokki</span>
+                </div>
+                <div class="food-item">
+                    <img src="https://delishglobe.com/wp-content/uploads/2024/12/Samgyeopsal-.png" alt="Samgyeopsal" />
+                    <span>Samgyeopsal</span>
+                </div>
+                <div class="food-item">
+                    <img src="https://www.recipetineats.com/tachyon/2023/07/Japchae-Korean-noodles_9.jpg" alt="Japchae" />
+                    <span>Japchae</span>
+                </div>
+            </div>
+        </section>
+        <div id="bp-webchat"></div>
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Korean Cuisine</h3>
+                    <p>Korean food is known for its bold flavors, vibrant colors, and healthy ingredients. From kimchi to barbecue, every dish tells a story of tradition and community. Explore, taste, and enjoy!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" title="Michelin Guide">Michelin Guide</a></li>
+                        <li><a href="#" title="Korean Food 101">Korean Food 101</a></li>
+                        <li><a href="#" title="Cultural Tips">Cultural Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: <a href="mailto:info@koreanfoodguide.com">info@koreanfoodguide.com</a></p>
+                    <p>Follow us:
+                        <a href="#" title="Instagram" class="footer-social">Instagram</a> |
+                        <a href="#" title="Facebook" class="footer-social">Facebook</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">&copy; 2025 Korean Food Michelin Guide. All rights reserved.</div>
+        </footer>
+    </main>
+    <!-- Botpress script and config for your bot -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2025/07/11/06/20250711062714-WY1R990D.js" defer></script>
+</body>
+</html>
